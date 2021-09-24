@@ -1,0 +1,39 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light container">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">andresitodev</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Marketplace</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+          <a class="nav-link" href="#">My Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sell</a>
+        </li>
+        {% else %}
+        
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+
+  {% if user.is_authenticated %}
+    <img class="rounded-circle mr-4" style="width: 30px;" src="https://i.pinimg.com/originals/38/83/99/3883994a94e2f3b600c5b099910979e0.png" />
+    <button type="button" class="btn btn-danger" style="width: 10%;margin-left: 7px;"><a href="{% url 'account_logout' %}" style="color: #fff; list-style: none; text-decoration: none;">Sign out</a></button>      
+  {% else %}
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="width: 20%;">
+    <button class="btn btn-primary me-md-2" type="button"><a href="{% url 'account_login' %}" class="text-white">Sing in</a></button>
+    <button class="btn btn-primary" type="button"><a href="{% url 'account_signup' %}" class="text-white">Sing up</a></button>
+  </div>  
+  {% endif %}
+</nav>
+
+
+{% block content %}{% endblock content %}
